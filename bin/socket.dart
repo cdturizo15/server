@@ -9,13 +9,11 @@ final server = Server();
 void main(){
 
     server.on('connection', (client){
-      print('connect to $client');
-      client.on('stream',(data){
-      print('data form client $data');
+      print('connect to $client'); 
+      client.on('msg',(data){
+        print('Location from client $data');
       });
-      Timer(Duration(seconds: 5), (){
-        client.emit('msg', 'Hello from server');
-      });
+      client.emit('msg','Hello from server');
   });
-    server.listen(9000);
+    server.listen(8000);
 }
